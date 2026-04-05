@@ -1,6 +1,9 @@
 export {
   easeSmooth,
   scrollViewport,
+  scrollViewportOneShot,
+  scrollViewportSection,
+  scrollViewportStagger,
   fadeIn,
   fadeInUp,
   fadeInDown,

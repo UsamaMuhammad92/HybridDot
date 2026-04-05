@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { NoiseOverlay } from "@/components/NoiseOverlay";
+import { CTAPanelMotion } from "@/components/home";
+import { SectionWrapper } from "@/components/ui/SectionWrapper";
 
 export const CTA_CONTENT = {
   headline: "Ready to scale with strategy, marketing & tech?",
@@ -12,9 +14,10 @@ export const CTA_CONTENT = {
 
 export function CTA() {
   return (
-    <section
+    <SectionWrapper
       id="cta"
       aria-labelledby="cta-heading"
+      sectionPadding={false}
       className="relative isolate overflow-hidden bg-[#F2F0EC] pb-[clamp(3.75rem,10vw,6.5rem)] pt-[clamp(3.75rem,9vw,6.25rem)]"
     >
       <div
@@ -44,9 +47,7 @@ export function CTA() {
             aria-hidden
           />
 
-          <div
-            className="rounded-[1.75rem] border border-white/80 bg-white/45 px-8 py-10 shadow-[0_32px_80px_-32px_rgba(0,0,0,0.12),0_0_0_1px_rgba(255,255,255,0.6)_inset,0_1px_0_rgba(255,255,255,0.9)_inset] backdrop-blur-2xl backdrop-saturate-150 sm:px-12 sm:py-12 md:rounded-[2rem] md:py-14"
-          >
+          <CTAPanelMotion className="rounded-[1.75rem] border border-white/80 bg-white/45 px-8 py-10 shadow-[0_32px_80px_-32px_rgba(0,0,0,0.12),0_0_0_1px_rgba(255,255,255,0.6)_inset,0_1px_0_rgba(255,255,255,0.9)_inset] backdrop-blur-2xl backdrop-saturate-150 sm:px-12 sm:py-12 md:rounded-[2rem] md:py-14">
             <h2
               id="cta-heading"
               className="text-center font-display text-[2rem] font-normal leading-[1.1] tracking-[-0.02em] text-neutral-950 sm:text-[2.375rem] md:text-[2.75rem] lg:text-[3rem]"
@@ -76,13 +77,13 @@ export function CTA() {
                 See selected work
               </Link>
             </div>
-          </div>
+          </CTAPanelMotion>
         </div>
 
         <div className="mx-auto mt-14 max-w-md md:mt-16" aria-hidden>
           <div className="h-px w-full bg-gradient-to-r from-transparent via-neutral-900/10 to-transparent" />
         </div>
       </div>
-    </section>
+    </SectionWrapper>
   );
 }

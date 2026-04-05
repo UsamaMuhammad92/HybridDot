@@ -1,18 +1,16 @@
+import { AboutPanelMotion } from "@/components/home";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
-import { hairline, sectionY, uiEyebrow } from "@/lib/sectionTheme";
+import { SectionWrapper } from "@/components/ui/SectionWrapper";
+import { hairline, uiEyebrow } from "@/lib/sectionTheme";
 import { cn } from "@/utils/cn";
 import { WHAT_WE_DO_SUMMARY } from "@/lib/company";
 
 export function AboutPreview() {
   return (
-    <section
-      id="about"
-      aria-labelledby="about-preview-heading"
-      className={cn(sectionY, "bg-[#FAFAF8]")}
-    >
+    <SectionWrapper id="about" aria-labelledby="about-preview-heading" className="bg-[#FAFAF8]">
       <Container size="lg">
-        <div className="relative overflow-hidden rounded-[1.75rem] border border-white/10 bg-[#0a0a0a] p-8 shadow-[0_40px_80px_-40px_rgba(0,0,0,0.35)] md:p-12 lg:p-14">
+        <AboutPanelMotion className="relative overflow-hidden rounded-[1.75rem] border border-white/10 bg-[#0a0a0a] p-8 shadow-[0_40px_80px_-40px_rgba(0,0,0,0.35)] md:p-12 lg:p-14">
           <div
             className="pointer-events-none absolute inset-0 opacity-[0.07]"
             aria-hidden
@@ -42,8 +40,8 @@ export function AboutPreview() {
               </Button>
             </div>
           </div>
-        </div>
+        </AboutPanelMotion>
       </Container>
-    </section>
+    </SectionWrapper>
   );
 }

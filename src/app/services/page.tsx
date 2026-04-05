@@ -1,4 +1,5 @@
 import { Container } from "@/components/ui/Container";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { PageIntro } from "@/components/PageIntro";
 import { SERVICE_PILLARS, SERVICES_META_DESCRIPTION, WHAT_WE_DO_SUMMARY } from "@/lib/company";
 import { sectionPage, surface } from "@/lib/sectionTheme";
@@ -21,7 +22,8 @@ export default function ServicesPage() {
           description={WHAT_WE_DO_SUMMARY}
         />
 
-        <ul className="mt-12 grid list-none gap-8 lg:grid-cols-3 lg:gap-10" role="list">
+        <ScrollReveal className="mt-12">
+          <ul className="grid list-none gap-8 lg:grid-cols-3 lg:gap-10" role="list">
           {pillars.map((pillar) => (
             <li key={pillar.title}>
               <article className="h-full rounded-2xl border border-neutral-900/[0.06] bg-white/60 p-6 shadow-[0_1px_0_rgba(255,255,255,0.8)_inset] backdrop-blur-sm md:p-7">
@@ -39,7 +41,8 @@ export default function ServicesPage() {
               </article>
             </li>
           ))}
-        </ul>
+          </ul>
+        </ScrollReveal>
       </Container>
     </section>
   );

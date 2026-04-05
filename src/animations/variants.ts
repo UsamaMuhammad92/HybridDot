@@ -5,19 +5,35 @@ export const easeSmooth = [0.22, 1, 0.36, 1] as const;
 
 const hiddenTransition = { duration: 0.4, ease: easeSmooth };
 
-/**
- * Scroll sections: replay when the block leaves and re-enters the viewport.
- * `amount` keeps triggers stable; margin starts animation slightly before fully in view.
- */
-/**
- * Scroll-driven sections. `amount: "some"` + neutral margin avoids a first-paint bug where
- * `whileInView` never fires (e.g. React Strict Mode remount + tight thresholds), leaving
- * blocks stuck at `initial="hidden"`.
- */
+/** For `useInView` / `whileInView` on inner blocks (not `SectionWrapper`). */
 export const scrollViewport = {
   once: false as const,
   margin: "0px" as const,
   amount: "some" as const,
+};
+
+/**
+ * One reveal per mount; does not revert to `hidden` when scrolled past.
+ * Used by `SectionWrapper` (`whileInView`) and `PageIntro` / `ScrollReveal` (`useInView`).
+ */
+export const scrollViewportOneShot = {
+  once: true as const,
+  margin: "0px" as const,
+  amount: "some" as const,
+};
+
+/** Larger effective viewport so `whileInView` fires a bit earlier (full section reveals). */
+export const scrollViewportSection = {
+  once: true as const,
+  margin: "12% 0px 28% 0px" as const,
+  amount: 0.12 as const,
+};
+
+/** Staggered grids: slightly generous bottom margin for earlier card reveals. */
+export const scrollViewportStagger = {
+  once: true as const,
+  margin: "0px 0px 20% 0px" as const,
+  amount: 0.18 as const,
 };
 
 export const fadeIn: Variants = {

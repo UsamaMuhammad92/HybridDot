@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/Button";
 import { HeroVisual } from "@/components/HeroVisual";
 import { NoiseOverlay } from "@/components/NoiseOverlay";
 import { COMPANY_TAGLINE, HERO_BODY } from "@/lib/company";
+import { cn } from "@/utils/cn";
 
 /**
  * Server-rendered hero — no Framer Motion here. Motion `initial={{ opacity: 0 }}` has been
@@ -25,7 +26,11 @@ export function Hero() {
       />
       <NoiseOverlay />
       <Container size="lg" className="relative z-10">
-        <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.92fr)] lg:gap-12 xl:gap-16">
+        <div
+          className={cn(
+            "home-hero-grid grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.92fr)] lg:gap-12 xl:gap-16"
+          )}
+        >
           <div className="flex max-w-2xl flex-col justify-center">
             <div
               className="mb-5 h-px w-14 bg-gradient-to-r from-neutral-900/20 via-neutral-900/12 to-transparent"

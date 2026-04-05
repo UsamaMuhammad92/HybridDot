@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { PageIntro } from "@/components/PageIntro";
 import { Button } from "@/components/ui/Button";
 import { COMPANY_CONTACT_EMAIL, COMPANY_FACTS } from "@/lib/company";
@@ -24,7 +25,7 @@ export default function ContactPage() {
           description={`Tell us about your goals, timeline, and market—we will respond with next steps. Studio: ${COMPANY_FACTS.addressLine1}, ${COMPANY_FACTS.addressLine2}.`}
         />
 
-        <div className="mt-12 max-w-xl space-y-8">
+        <ScrollReveal className="mt-12 max-w-xl space-y-8">
           <div>
             <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.22em] text-neutral-500">
               Email
@@ -56,7 +57,7 @@ export default function ContactPage() {
             </Link>
             .
           </p>
-        </div>
+        </ScrollReveal>
       </Container>
     </section>
   );

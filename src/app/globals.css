@@ -29,3 +29,36 @@ h6 {
     text-wrap: balance;
   }
 }
+
+/* Homepage hero: stagger columns on load (no Framer on hero — avoids hydration opacity bugs). */
+@media (prefers-reduced-motion: no-preference) {
+  .home-hero-grid > * {
+    animation: home-hero-rise 0.68s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+  }
+
+  .home-hero-grid > *:nth-child(1) {
+    animation-delay: 0.07s;
+  }
+
+  .home-hero-grid > *:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+}
+
+@keyframes home-hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-hero-grid > * {
+    animation: none;
+  }
+}
