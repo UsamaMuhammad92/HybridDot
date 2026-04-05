@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 44" role="img" aria-label="HybridDot">
+  <text
+    x="0"
+    y="32"
+    font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+    font-size="26"
+    font-weight="650"
+    letter-spacing="-0.03em"
+  >
+    <tspan fill="#171717">Hybrid</tspan><tspan fill="#C1121F">Dot</tspan>
+  </text>
+</svg>

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none" role="img" aria-label="HybridDot">
+  <!-- Bone/cream tone paired with `hybriddot-logo-footer.png` (see Footer.tsx) -->
+  <rect width="32" height="32" rx="7" fill="#F1ECE4" />
+  <!-- Left leg (full height) -->
+  <rect x="10" y="7" width="3.5" height="18" rx="1.75" fill="#C1121F" />
+  <!-- Crossbar -->
+  <rect x="10" y="14.25" width="12" height="3.5" rx="1.75" fill="#C1121F" />
+  <!-- Right leg: upper segment only; gap then dot below = “Dot” in the name -->
+  <rect x="18.5" y="7" width="3.5" height="11.5" rx="1.75" fill="#C1121F" />
+  <!-- Dot aligned under right stem -->
+  <circle cx="20.25" cy="22.25" r="2.75" fill="#C1121F" />
+</svg>
