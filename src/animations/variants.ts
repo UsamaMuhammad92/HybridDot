@@ -22,9 +22,9 @@ export const scrollViewportOneShot = {
   amount: "some" as const,
 };
 
-/** Larger effective viewport so `whileInView` fires a bit earlier (full section reveals). */
+/** Full-width section shells (`SectionWrapper`): generous margin + replay when re-entering view. */
 export const scrollViewportSection = {
-  once: true as const,
+  once: false as const,
   margin: "12% 0px 28% 0px" as const,
   amount: 0.12 as const,
 };

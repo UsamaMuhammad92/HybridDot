@@ -2,7 +2,7 @@
 
 import type { ReactNode } from "react";
 import { useRef } from "react";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { scrollCardItem, scrollStaggerGrid, scrollViewportStagger } from "@/animations";
 import { useRevealFallback } from "@/hooks/useRevealFallback";
 import { cn } from "@/utils/cn";
@@ -18,6 +18,7 @@ type StaggerInViewGridProps = {
 export function StaggerInViewGrid({ className, children }: StaggerInViewGridProps) {
   const ref = useRef<HTMLUListElement>(null);
   useRevealFallback(ref, 800);
+  const isInView = useInView(ref, scrollViewportStagger);
 
   return (
     <MotionUl
@@ -26,8 +27,7 @@ export function StaggerInViewGrid({ className, children }: StaggerInViewGridProp
       role="list"
       variants={scrollStaggerGrid}
       initial="hidden"
-      whileInView="visible"
-      viewport={scrollViewportStagger}
+      animate={isInView ? ("visible" as const) : ("hidden" as const)}
     >
       {children}
     </MotionUl>

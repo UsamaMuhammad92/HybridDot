@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import { CTAPanelMotion, HomeScrollReveal } from "@/components/home";
 import { NoiseOverlay } from "@/components/NoiseOverlay";
-import { CTAPanelMotion } from "@/components/home";
 import { SectionWrapper } from "@/components/ui/SectionWrapper";
 
 export const CTA_CONTENT = {
@@ -80,9 +80,12 @@ export function CTA() {
           </CTAPanelMotion>
         </div>
 
-        <div className="mx-auto mt-14 max-w-md md:mt-16" aria-hidden>
-          <div className="h-px w-full bg-gradient-to-r from-transparent via-neutral-900/10 to-transparent" />
-        </div>
+        <HomeScrollReveal className="mx-auto mt-14 max-w-md md:mt-16">
+          <div
+            className="h-px w-full bg-gradient-to-r from-transparent via-neutral-900/10 to-transparent"
+            aria-hidden
+          />
+        </HomeScrollReveal>
       </div>
     </SectionWrapper>
   );

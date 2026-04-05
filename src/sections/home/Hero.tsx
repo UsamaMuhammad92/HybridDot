@@ -1,3 +1,4 @@
+import { HeroMotion, HeroMotionItem } from "@/components/home";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { HeroVisual } from "@/components/HeroVisual";
@@ -5,10 +6,7 @@ import { NoiseOverlay } from "@/components/NoiseOverlay";
 import { COMPANY_TAGLINE, HERO_BODY } from "@/lib/company";
 import { cn } from "@/utils/cn";
 
-/**
- * Server-rendered hero — no Framer Motion here. Motion `initial={{ opacity: 0 }}` has been
- * intermittently sticking at 0 after hydration (blank page with only the hero tint visible).
- */
+/** Shell is static; copy + visual animate via {@link HeroMotion} (`useInView` + fallback, not `whileInView` alone). */
 export function Hero() {
   return (
     <section
@@ -26,12 +24,12 @@ export function Hero() {
       />
       <NoiseOverlay />
       <Container size="lg" className="relative z-10">
-        <div
+        <HeroMotion
           className={cn(
             "home-hero-grid grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.92fr)] lg:gap-12 xl:gap-16"
           )}
         >
-          <div className="flex max-w-2xl flex-col justify-center">
+          <HeroMotionItem className="max-w-2xl lg:col-start-1 lg:row-start-1">
             <div
               className="mb-5 h-px w-14 bg-gradient-to-r from-neutral-900/20 via-neutral-900/12 to-transparent"
               aria-hidden
@@ -45,12 +43,16 @@ export function Hero() {
             >
               {COMPANY_TAGLINE}
             </h1>
+          </HeroMotionItem>
 
-            <p className="mt-9 max-w-2xl text-[0.9375rem] leading-[1.75] text-neutral-600 md:text-base md:leading-[1.7]">
+          <HeroMotionItem className="max-w-2xl lg:col-start-1 lg:row-start-2">
+            <p className="mt-9 text-[0.9375rem] leading-[1.75] text-neutral-600 md:text-base md:leading-[1.7] lg:mt-0">
               {HERO_BODY}
             </p>
+          </HeroMotionItem>
 
-            <div className="mt-11 flex flex-wrap items-center gap-3 sm:mt-12 sm:gap-4">
+          <HeroMotionItem className="lg:col-start-1 lg:row-start-3">
+            <div className="mt-9 flex flex-wrap items-center gap-3 sm:mt-10 sm:gap-4 lg:mt-10">
               <Button
                 href="/contact"
                 size="lg"
@@ -67,12 +69,12 @@ export function Hero() {
                 View Our Work
               </Button>
             </div>
-          </div>
+          </HeroMotionItem>
 
-          <div className="relative flex justify-center lg:justify-end">
+          <HeroMotionItem className="relative flex justify-center lg:col-start-2 lg:row-span-3 lg:row-start-1 lg:justify-end">
             <HeroVisual />
-          </div>
-        </div>
+          </HeroMotionItem>
+        </HeroMotion>
       </Container>
     </section>
   );

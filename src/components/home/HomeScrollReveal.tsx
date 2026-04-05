@@ -1,8 +1,10 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { motion } from "framer-motion";
-import { easeSmooth, scrollViewportOneShot } from "@/animations";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
+import { easeSmooth } from "@/animations";
+import { useRevealFallback } from "@/hooks/useRevealFallback";
 import { cn } from "@/utils/cn";
 
 type HomeScrollRevealProps = {
@@ -16,12 +18,16 @@ type HomeScrollRevealProps = {
  * Fade + lift when the block enters the viewport (homepage headings, footnotes, panels).
  */
 export function HomeScrollReveal({ children, className, delay = 0 }: HomeScrollRevealProps) {
+  const ref = useRef(null);
+  useRevealFallback(ref, 800);
+  const isInView = useInView(ref, { once: true, margin: "0px 0px 16% 0px", amount: 0.2 });
+
   return (
     <motion.div
+      ref={ref}
       className={cn(className)}
       initial={{ opacity: 0, y: 28 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ ...scrollViewportOneShot, margin: "0px 0px 16% 0px", amount: 0.2 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }}
       transition={{ duration: 0.58, delay, ease: easeSmooth }}
     >
       {children}

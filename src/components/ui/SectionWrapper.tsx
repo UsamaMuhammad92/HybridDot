@@ -2,7 +2,7 @@
 
 import type { ComponentProps, ReactNode } from "react";
 import { useRef } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useInView, useReducedMotion } from "framer-motion";
 import { easeSmooth, scrollViewportSection } from "@/animations";
 import { useRevealFallback } from "@/hooks/useRevealFallback";
 import { cn } from "@/utils/cn";
@@ -46,9 +46,9 @@ function AnimatedSectionShell({
   children,
   as,
 }: AnimatedShellProps) {
-  const sectionRef = useRef<HTMLElement>(null);
-  const divRef = useRef<HTMLElement>(null);
-  useRevealFallback(as === "section" ? sectionRef : divRef, 750);
+  const ref = useRef<HTMLDivElement | null>(null);
+  useRevealFallback(ref, 750);
+  const isInView = useInView(ref, scrollViewportSection);
 
   const motionProps = {
     id,
@@ -56,15 +56,14 @@ function AnimatedSectionShell({
     "aria-label": ariaLabel,
     "aria-labelledby": ariaLabelledby,
     initial: { opacity: 0, y: 44 },
-    whileInView: { opacity: 1, y: 0 },
+    animate: isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 44 },
     transition: { duration: 0.68, ease: easeSmooth },
-    viewport: scrollViewportSection,
   };
 
   if (as === "section") {
     return (
       <MotionSection
-        ref={sectionRef as unknown as ComponentProps<typeof MotionSection>["ref"]}
+        ref={ref as unknown as ComponentProps<typeof MotionSection>["ref"]}
         {...motionProps}
       >
         {children}
@@ -72,14 +71,14 @@ function AnimatedSectionShell({
     );
   }
   return (
-    <MotionDiv ref={divRef as unknown as ComponentProps<typeof MotionDiv>["ref"]} {...motionProps}>
+    <MotionDiv ref={ref} {...motionProps}>
       {children}
     </MotionDiv>
   );
 }
 
 /**
- * Full-section fade + rise on scroll. Uses a generous viewport margin so `whileInView` fires reliably,
+ * Full-section fade + rise on scroll. `useInView` + `animate` re-subscribes on remount; generous margin helps the observer.
  * plus {@link useRevealFallback} so we never stay stuck at `opacity: 0`.
  */
 export function SectionWrapper({
