@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
+import { X } from "lucide-react";
 import { BrandLogo } from "@/components/BrandLogo";
 import { cn } from "@/utils/cn";
 
@@ -112,7 +113,9 @@ export function Navbar() {
     <header
       role="banner"
       className={cn(
-        "sticky top-0 z-50 w-full border-b border-neutral-900/[0.05] bg-white/[0.72] shadow-[0_1px_0_rgba(255,255,255,0.7)_inset] backdrop-blur-2xl backdrop-saturate-150 supports-[backdrop-filter]:bg-white/[0.62]"
+        "sticky top-0 z-50 w-full border-b border-neutral-900/[0.05] bg-white/[0.72] shadow-[0_1px_0_rgba(255,255,255,0.7)_inset] backdrop-blur-2xl backdrop-saturate-150 supports-[backdrop-filter]:bg-white/[0.62]",
+        /* Panel is also z-50 — without this the sheet paints over the bar and the menu toggle (×) vanishes */
+        mobileMenuOpen && "z-[60] border-b border-neutral-900/[0.08] bg-white/95 shadow-md supports-[backdrop-filter]:bg-white/90"
       )}
     >
       {/* Centered container: max-w-7xl, h-16, logo left | nav center | CTA right */}
@@ -205,9 +208,24 @@ export function Navbar() {
               animate="open"
               exit="exit"
               variants={mobileMenuPanel}
-              className="fixed inset-x-0 top-0 z-50 flex flex-col gap-8 overflow-y-auto bg-white px-6 pt-24 pb-12 shadow-xl md:hidden"
+              className="fixed inset-x-0 top-0 z-50 flex max-h-[min(100dvh,100vh)] flex-col gap-6 overflow-y-auto bg-white px-6 pb-10 pt-[calc(4.5rem+1rem)] shadow-xl md:hidden"
               onClick={(e) => e.stopPropagation()}
+              aria-describedby="mobile-menu-title"
             >
+              <div className="flex shrink-0 items-center justify-between gap-4 border-b border-neutral-200 pb-4">
+                <p id="mobile-menu-title" className="text-sm font-semibold tracking-wide text-neutral-500">
+                  Menu
+                </p>
+                <button
+                  type="button"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="inline-flex items-center gap-2 rounded-lg border border-neutral-200 bg-white px-3 py-2 text-sm font-medium text-neutral-900 shadow-sm transition-colors hover:border-neutral-300 hover:bg-neutral-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C1121F] focus-visible:ring-offset-2"
+                  aria-label="Close navigation menu"
+                >
+                  <X className="h-4 w-4 shrink-0" strokeWidth={2} aria-hidden />
+                  Close
+                </button>
+              </div>
               <ul className="flex flex-col gap-1" role="list">
                 {NAV_LINKS.map((link, i) => (
                   <motion.li
